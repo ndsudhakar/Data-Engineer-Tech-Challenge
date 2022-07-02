@@ -1,0 +1,59 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DSSource",
+						"type": "DatasetReference"
+					},
+					"name": "SourceFiles"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DSSource",
+						"type": "DatasetReference"
+					},
+					"name": "SinkFile"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DeriveColumns"
+				},
+				{
+					"name": "FilterNullNames"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          name as string,",
+				"          price as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     wildcardPaths:['Source/dataset*.csv']) ~> SourceFiles",
+				"FilterNullNames derive(first_name = left(name,instr(name,' ')-1),",
+				"          last_name = right(name,length(name)-instr(name,' ')),",
+				"          price = ltrim(price,'0'),",
+				"          above_100 = case(toDecimal(price, 20, 4)>100,'true','false')) ~> DeriveColumns",
+				"SourceFiles filter(name!='') ~> FilterNullNames",
+				"DeriveColumns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          name as string,",
+				"          price as string",
+				"     ),",
+				"     partitionFileNames:['sec1Target'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> SinkFile"
+			]
+		}
+	}
+}
