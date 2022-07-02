@@ -1,0 +1,9 @@
+{
+	"name": "detcadf1",
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "cee1c4e2-1cb2-4f72-8517-0053e2dcbc79",
+		"tenantId": "080e12e7-7997-4426-ac9d-9bdd1cd7e8c7"
+	}
+}
