@@ -1,0 +1,22 @@
+{
+	"name": "DSSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "detcbs_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Source",
+				"container": "sec1dp"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
