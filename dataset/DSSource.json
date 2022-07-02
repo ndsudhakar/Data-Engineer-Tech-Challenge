@@ -20,9 +20,11 @@
 		},
 		"schema": [
 			{
+				"name": "name",
 				"type": "String"
 			},
 			{
+				"name": "price",
 				"type": "String"
 			}
 		]
