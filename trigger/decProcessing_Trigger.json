@@ -1,0 +1,25 @@
+{
+	"name": "decProcessing_Trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-07-03T07:52:00",
+				"timeZone": "Singapore Standard Time",
+				"schedule": {
+					"minutes": [
+						15
+					],
+					"hours": [
+						1
+					]
+				}
+			}
+		}
+	}
+}
